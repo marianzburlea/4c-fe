@@ -11,6 +11,7 @@ export const Item = styled.button<T.Item | any>`
   text-decoration: ${({ completed }: T.Item) =>
     completed ? 'line-through' : 'none'};
   transition: 500ms;
+  width: ${({ fullWidth }: T.Item) => (fullWidth ? '100%' : 'auto')};
 
   &:hover {
     transform: scale(1.05);

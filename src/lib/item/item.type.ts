@@ -7,4 +7,5 @@ export interface Item {
   itemId?: number
   key?: number | string
   completed?: boolean
+  fullWidth?: boolean
 }

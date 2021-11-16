@@ -1,5 +1,5 @@
 import { Form, Formik, Field } from 'formik'
-import { Button, Flex, Input, Item } from '../../lib'
+import { Button, Flex, Input, Item, Title, Logo } from '../../lib'
 import * as T from './todo-list.type'
 import * as F from './todo-list.form'
 import { action, useSiteState } from '../context'
@@ -27,6 +27,14 @@ const TodoList = () => {
 
   return (
     <Flex direction="column" gap={64} padding={32} bgc="yellow">
+      <Flex gap={32}>
+        <Logo height={48} width={48} src="/logo512.png" alt="ToDo List Logo" />
+
+        <Title>
+          Smart <b>To-Do</b> List
+        </Title>
+      </Flex>
+
       <Formik
         initialValues={F.initialValues}
         validationSchema={F.validationSchema}
@@ -46,6 +54,7 @@ const TodoList = () => {
                 dirty={dirty}
                 placeholder="Write a to-do"
               />
+
               <Button disabled={!isValid} type="submit" bgc="red">
                 Add to-do
               </Button>
@@ -54,9 +63,14 @@ const TodoList = () => {
         )}
       </Formik>
 
-      <Flex direction="column" gap={8}>
+      <Flex direction="column" gap={8} grow={1}>
         {uncompleteList.map(({ title, timestamp = 0 }, k) => (
-          <Item key={k} itemId={timestamp} onClick={() => toggle(timestamp)}>
+          <Item
+            fullWidth
+            key={k}
+            itemId={timestamp}
+            onClick={() => toggle(timestamp)}
+          >
             {title}
           </Item>
         ))}
@@ -69,11 +83,27 @@ const TodoList = () => {
             itemId={timestamp}
             onClick={() => toggle(timestamp)}
             completed={completed}
+            fullWidth
           >
             {title}
           </Item>
         ))}
       </Flex>
+
+      <footer>
+        <Flex>
+          <Logo
+            width={48}
+            height={48}
+            src="/svg/wow-dop.svg"
+            alt="WoW DoP - Deliver On Promise and Bring the WoW factor in!"
+          />
+
+          <Title tag="h4">
+            WoW DoP - <b>Rocket-Boost</b> Projects Into the <b>Future</b>
+          </Title>
+        </Flex>
+      </footer>
     </Flex>
   )
 }

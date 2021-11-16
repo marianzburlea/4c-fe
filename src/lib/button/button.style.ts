@@ -16,6 +16,7 @@ export const Button = styled.button`
   transition: 250ms;
   border-radius: ${({ theme }) => theme.borderRadius};
   gap: ${({ gap }: T.Button) => gap}px;
+  width: ${({ fullWidth }: T.Button) => (fullWidth ? '100%' : 'auto')};
   display: flex;
   padding: ${({ padding }: T.Button) => padding}px;
   background-color: ${({ bgc = 'transparent' }: T.Button) => bgcMap[bgc]};
