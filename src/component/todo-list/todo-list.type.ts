@@ -4,6 +4,10 @@ export interface ToDo {
   id?: number
 }
 
+export interface FormExtra {
+  resetForm: () => void
+}
+
 export interface TodoList {
   list?: ToDo[]
 }

@@ -11,5 +11,6 @@ interface Color {
 declare module 'styled-components' {
   export interface DefaultTheme {
     color: Color
+    borderRadius: string
   }
 }

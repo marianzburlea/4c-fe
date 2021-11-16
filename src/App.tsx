@@ -1,14 +1,19 @@
 import React from "react";
-import { StateProvider } from './component/context'
+import { ThemeProvider } from 'styled-components'
+
+import { ToDoProvider } from './component/context'
 import TodoList from './component/todo-list'
 import { Layout } from './lib'
+import theme from './config/theme'
 
 const App = () => (
-  <StateProvider>
-    <Layout>
-      <TodoList />
-    </Layout>
-  </StateProvider>
+  <ToDoProvider>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <TodoList />
+      </Layout>
+    </ThemeProvider>
+  </ToDoProvider>
 )
 
 export default App;

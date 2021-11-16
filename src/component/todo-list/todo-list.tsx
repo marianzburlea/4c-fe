@@ -12,8 +12,9 @@ const TodoList = () => {
   const uncompleteList = list.filter(({ completed }) => !completed)
   const completeList = list.filter(({ completed }) => completed)
 
-  const saveTodo = ({ title }: T.ToDo) => {
+  const saveTodo = ({ title }: T.ToDo, { resetForm }: T.FormExtra) => {
     dispatch(action.addAction(title))
+    resetForm()
   }
 
   const toggle = (id: number) => {
@@ -27,19 +28,21 @@ const TodoList = () => {
         initialValues={F.initialValues}
         validationSchema={F.validationSchema}
         onSubmit={saveTodo}
+        enableReinitialize
       >
         {({ isValid }) => (
           <Form>
-            <Field type="text" as={Input} name="title" />
-
-            <Button disabled={!isValid} type="submit">
-              Add to-do
-            </Button>
+            <Flex gap={16}>
+              <Field type="text" as={Input} name="title" />
+              <Button disabled={!isValid} type="submit">
+                Add to-do
+              </Button>
+            </Flex>
           </Form>
         )}
       </Formik>
 
-      <Flex direction="column" gap={12}>
+      <Flex direction="column" gap={8}>
         {uncompleteList.map(({ title, id = 0 }, k) => (
           <Item key={k} itemId={id} onClick={() => toggle(id)}>
             {title}
@@ -47,7 +50,7 @@ const TodoList = () => {
         ))}
       </Flex>
 
-      <Flex direction="column" gap={12}>
+      <Flex direction="column" gap={8}>
         {completeList.map(({ title, id = 0, completed }, k) => (
           <Item
             key={k}

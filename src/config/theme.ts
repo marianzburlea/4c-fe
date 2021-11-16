@@ -5,6 +5,7 @@ const theme = {
     primary: '#036',
     secondary: '#c00',
   },
+  borderRadius: '8px',
 }
 
 export default theme

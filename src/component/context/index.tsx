@@ -13,7 +13,7 @@ const appData: T.AppData = {
 
 const AppProvider = createContext(appData)
 
-const StateProvider = ({ children }: { children: ReactNode }) => {
+const ToDoProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(todoReducer, appData)
   return (
     <AppProvider.Provider
@@ -35,4 +35,4 @@ export const useSiteState = () => {
 
 export * as action from './action'
 
-export { StateProvider }
+export { ToDoProvider }
