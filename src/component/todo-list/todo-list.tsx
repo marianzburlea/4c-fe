@@ -33,7 +33,7 @@ const TodoList = () => {
         onSubmit={saveTodo}
         enableReinitialize
       >
-        {({ isValid, errors, touched }) => (
+        {({ isValid, errors, touched, dirty }) => (
           <Form>
             <Flex gap={16}>
               <Field
@@ -43,6 +43,7 @@ const TodoList = () => {
                 label="What are you planning to do?"
                 error={errors.title}
                 touched={touched.title}
+                dirty={dirty}
                 placeholder="Write a to-do"
               />
               <Button disabled={!isValid} type="submit" bgc="red">

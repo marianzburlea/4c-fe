@@ -4,6 +4,7 @@ export interface Input {
   placeholder?: string
   label?: string
   touched?: boolean
+  dirty?: boolean
   dataTestid?: string
 }
 

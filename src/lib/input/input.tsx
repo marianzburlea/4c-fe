@@ -5,6 +5,7 @@ const Input = ({
   type,
   error,
   touched,
+  dirty,
   placeholder,
   label,
   dataTestid,
@@ -28,7 +29,10 @@ const Input = ({
         {...rest}
       />
 
-      <S.Error data-testid={`${dataTestid}-error`} show={!!error && touched}>
+      <S.Error
+        data-testid={`${dataTestid}-error`}
+        show={!!error && touched && dirty}
+      >
         {error}
       </S.Error>
     </S.Wrapper>
