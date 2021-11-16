@@ -5,9 +5,21 @@ import * as T from './type'
 
 const appData: T.AppData = {
   list: [
-    { id: 1, title: 'First default uncomplete to-do item', completed: false },
-    { id: 2, title: 'Second default uncomplete to-do item', completed: false },
-    { id: 3, title: 'First default to-do item', completed: true },
+    {
+      timestamp: 1637092237826,
+      title: 'Second default uncomplete to-do item',
+      completed: false,
+    },
+    {
+      timestamp: 1637092227826, // time is 10 seconds lesser than the previous item
+      title: 'Frist default uncomplete to-do item',
+      completed: false,
+    },
+    {
+      timestamp: 1637092247826,
+      title: 'First default to-do item',
+      completed: true,
+    },
   ],
 }
 

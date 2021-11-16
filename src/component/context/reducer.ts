@@ -13,14 +13,14 @@ export const todoReducer = (state: T.AppData, action: any) => {
     case C.REMOVE:
       return {
         ...state,
-        list: state.list.filter(({ id }) => action.todo.id !== id),
+        list: state.list.filter(({ timestamp }) => action.todo.timestamp !== timestamp),
       }
 
     case C.UPDATE:
       return {
         ...state,
         list: state.list.map((todo) =>
-          action.todo.id === todo.id
+          action.todo.timestamp === todo.timestamp
             ? {
                 ...todo,
                 title: action.todo.title,
@@ -33,7 +33,7 @@ export const todoReducer = (state: T.AppData, action: any) => {
       return {
         ...state,
         list: state.list.map((todo) =>
-          action.todo.id === todo.id
+          action.todo.timestamp === todo.timestamp
             ? {
                 ...todo,
                 completed: !todo.completed,

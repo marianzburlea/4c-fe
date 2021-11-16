@@ -9,21 +9,24 @@ const TodoList = () => {
 
   const { list = [] } = state as T.TodoList
 
-  const uncompleteList = list.filter(({ completed }) => !completed)
-  const completeList = list.filter(({ completed }) => completed)
+  const uncompleteList = list
+    .filter(({ completed }) => !completed)
+    .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
+  const completeList = list
+    .filter(({ completed }) => completed)
+    .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
 
   const saveTodo = ({ title }: T.ToDo, { resetForm }: T.FormExtra) => {
     dispatch(action.addAction(title))
     resetForm()
   }
 
-  const toggle = (id: number) => {
-    console.log('toogle', id)
-    dispatch(action.toggleAction(id))
+  const toggle = (timestamp: number) => {
+    dispatch(action.toggleAction(timestamp))
   }
 
   return (
-    <Flex direction="column" gap={32} padding={32} bgc="yellow">
+    <Flex direction="column" gap={64} padding={32} bgc="yellow">
       <Formik
         initialValues={F.initialValues}
         validationSchema={F.validationSchema}
@@ -37,8 +40,10 @@ const TodoList = () => {
                 type="text"
                 as={Input}
                 name="title"
+                label="What are you planning to do?"
                 error={errors.title}
                 touched={touched.title}
+                placeholder="Write a to-do"
               />
               <Button disabled={!isValid} type="submit" bgc="red">
                 Add to-do
@@ -49,19 +54,19 @@ const TodoList = () => {
       </Formik>
 
       <Flex direction="column" gap={8}>
-        {uncompleteList.map(({ title, id = 0 }, k) => (
-          <Item key={k} itemId={id} onClick={() => toggle(id)}>
+        {uncompleteList.map(({ title, timestamp = 0 }, k) => (
+          <Item key={k} itemId={timestamp} onClick={() => toggle(timestamp)}>
             {title}
           </Item>
         ))}
       </Flex>
 
       <Flex direction="column" gap={8}>
-        {completeList.map(({ title, id = 0, completed }, k) => (
+        {completeList.map(({ title, timestamp = 0, completed }, k) => (
           <Item
             key={k}
-            itemId={id}
-            onClick={() => toggle(id)}
+            itemId={timestamp}
+            onClick={() => toggle(timestamp)}
             completed={completed}
           >
             {title}

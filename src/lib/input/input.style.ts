@@ -7,6 +7,14 @@ export const Wrapper = styled.div`
   transition: 250ms;
 `
 
+export const Label = styled.label`
+  position: absolute;
+  color: ${({ theme }) => theme.color.primary};
+  top: -1.3rem;
+  font-size: 14px;
+  padding-left: 1rem;
+`
+
 export const Error = styled.div<T.SError>`
   margin-top: 4px;
   margin-left: 14px;
@@ -30,6 +38,7 @@ export const Input = styled.input`
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: 250ms;
+  min-width: 20rem;
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: 2px 4px 7px rgba(126, 126, 126, 0.6);
 

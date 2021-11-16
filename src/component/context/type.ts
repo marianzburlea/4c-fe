@@ -1,7 +1,7 @@
 export interface ToDo {
   title: string
   completed?: boolean
-  id: number
+  timestamp: number
 }
 
 export interface AppData {

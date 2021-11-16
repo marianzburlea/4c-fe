@@ -1,22 +1,22 @@
-import { getRandomId } from '../../util'
+import { getCurrentTime } from '../../util'
 import * as C from './constant'
 
 export const addAction = (title: string) => ({
   type: C.ADD,
-  todo: { id: getRandomId(), title, completed: false },
+  todo: { timestamp: getCurrentTime(), title, completed: false },
 })
 
-export const removeAction = (id: number) => ({
+export const removeAction = (timestamp: number) => ({
   type: C.REMOVE,
-  todo: { id },
+  todo: { timestamp },
 })
 
-export const toggleAction = (id: number) => ({
+export const toggleAction = (timestamp: number) => ({
   type: C.TOGGLE,
-  todo: { id },
+  todo: { timestamp },
 })
 
-export const updateAction = (id: number, title: string) => ({
+export const updateAction = (timestamp: number, title: string) => ({
   type: C.TOGGLE,
-  todo: { id, title },
+  todo: { timestamp, title },
 })

@@ -1,12 +1,36 @@
 import * as T from './input.type'
 import * as S from './input.style'
 
-const Input = ({ type, error, touched, ...rest }: T.Input) => {
+const Input = ({
+  type,
+  error,
+  touched,
+  placeholder,
+  label,
+  dataTestid,
+  ...rest
+}: T.Input) => {
   return (
-    <S.Wrapper>
-      <S.Input autoFocus type={type} {...rest} />
+    <S.Wrapper data-testid={dataTestid}>
+      <S.Label
+        data-testid={`${dataTestid}-label`}
+        htmlFor={`${dataTestid}-input`}
+      >
+        {label}
+      </S.Label>
 
-      <S.Error show={!!error && touched}>{error}</S.Error>
+      <S.Input
+        id={`${dataTestid}-input`}
+        data-testid={`${dataTestid}-input`}
+        autoFocus
+        placeholder={placeholder}
+        type={type}
+        {...rest}
+      />
+
+      <S.Error data-testid={`${dataTestid}-error`} show={!!error && touched}>
+        {error}
+      </S.Error>
     </S.Wrapper>
   )
 }
@@ -14,6 +38,7 @@ const Input = ({ type, error, touched, ...rest }: T.Input) => {
 Input.defaultProps = {
   error: '',
   touched: false,
+  dataTestid: 'input-test-component',
 }
 
 export default Input

@@ -1,1 +1,1 @@
-export const getRandomId = () => ~~(Math.random() * 9999999999)
+export const getCurrentTime = () => +new Date()
