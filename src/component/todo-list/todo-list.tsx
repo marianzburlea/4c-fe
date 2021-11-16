@@ -1,11 +1,31 @@
 import { Form, Formik, Field } from 'formik'
 import { Button, Input } from '../../lib'
-import { todoList } from './todo-list.data'
 import * as T from './todo-list.type'
 import * as F from './todo-list.form'
+import { useSiteState } from '../context'
+import { useEffect } from 'react'
 
-const TodoList = ({ data }: T.TodoList) => {
-  const list = Array.isArray(data) ? data : todoList
+const TodoList = () => {
+  const { state, dispatch } = useSiteState() as any
+
+  const { list = [] } = state as T.TodoList
+
+  useEffect(() => {
+    dispatch({
+      type: 'ADD',
+      todo: { id: 22, title: 'This is going to be awesome', completed: false },
+    })
+    dispatch({
+      type: 'REMOVE',
+      todo: { id: 22 },
+    })
+    dispatch({
+      type: 'TOGGLE',
+      todo: { id: 2 },
+    })
+  }, [])
+
+  // const list = Array.isArray(data) ? data : []
   const uncompleteList = list.filter(({ completed }) => !completed)
   const completeList = list.filter(({ completed }) => completed)
 
@@ -32,15 +52,15 @@ const TodoList = ({ data }: T.TodoList) => {
       </Formik>
 
       <div>
-        {uncompleteList.map((item, k) => (
-          <h1 key={k}>To to list uncomplete item</h1>
+        {uncompleteList.map(({ title }, k) => (
+          <h1 key={k}>{title}</h1>
         ))}
       </div>
 
       <div>
-        {completeList.map((item, k) => (
+        {completeList.map(({ title }, k) => (
           <h1 key={k}>
-            <s>To to list complete item</s>
+            <s>{title}</s>
           </h1>
         ))}
       </div>

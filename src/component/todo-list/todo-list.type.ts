@@ -4,5 +4,5 @@ export interface ToDo {
 }
 
 export interface TodoList {
-  data?: ToDo[]
+  list?: ToDo[]
 }
