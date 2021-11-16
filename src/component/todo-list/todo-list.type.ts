@@ -1,6 +1,6 @@
-interface ToDo {
+export interface ToDo {
   title: string
-  completed: boolean
+  completed?: boolean
 }
 
 export interface TodoList {
