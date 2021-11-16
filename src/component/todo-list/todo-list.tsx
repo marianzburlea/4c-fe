@@ -2,35 +2,19 @@ import { Form, Formik, Field } from 'formik'
 import { Button, Input } from '../../lib'
 import * as T from './todo-list.type'
 import * as F from './todo-list.form'
-import { useSiteState } from '../context'
-import { useEffect } from 'react'
+import { action, useSiteState } from '../context'
 
 const TodoList = () => {
   const { state, dispatch } = useSiteState() as any
 
   const { list = [] } = state as T.TodoList
 
-  useEffect(() => {
-    dispatch({
-      type: 'ADD',
-      todo: { id: 22, title: 'This is going to be awesome', completed: false },
-    })
-    dispatch({
-      type: 'REMOVE',
-      todo: { id: 22 },
-    })
-    dispatch({
-      type: 'TOGGLE',
-      todo: { id: 2 },
-    })
-  }, [])
-
   // const list = Array.isArray(data) ? data : []
   const uncompleteList = list.filter(({ completed }) => !completed)
   const completeList = list.filter(({ completed }) => completed)
 
-  const saveTodo = (values: T.ToDo) => {
-    console.log('Saving a todo', values)
+  const saveTodo = ({ title }: T.ToDo) => {
+    dispatch(action.addAction(title))
   }
 
   return (
