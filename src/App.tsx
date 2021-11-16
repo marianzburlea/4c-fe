@@ -1,5 +1,10 @@
 import React from "react";
+import TodoList from './component/todo-list'
 
-const App = () => <div>4C Platform Frontend Technical Test</div>;
+const App = () => (
+  <div>
+    <TodoList />
+  </div>
+)
 
 export default App;
