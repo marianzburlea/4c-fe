@@ -2,6 +2,7 @@ import * as T from './type'
 import * as C from './constant'
 
 export const todoReducer = (state: T.AppData, action: any) => {
+  console.log(action)
   switch (action.type) {
     case C.ADD:
       return {

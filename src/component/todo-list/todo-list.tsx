@@ -1,5 +1,5 @@
 import { Form, Formik, Field } from 'formik'
-import { Button, Input } from '../../lib'
+import { Button, Flex, Input, Item } from '../../lib'
 import * as T from './todo-list.type'
 import * as F from './todo-list.form'
 import { action, useSiteState } from '../context'
@@ -9,7 +9,6 @@ const TodoList = () => {
 
   const { list = [] } = state as T.TodoList
 
-  // const list = Array.isArray(data) ? data : []
   const uncompleteList = list.filter(({ completed }) => !completed)
   const completeList = list.filter(({ completed }) => completed)
 
@@ -17,8 +16,13 @@ const TodoList = () => {
     dispatch(action.addAction(title))
   }
 
+  const toggle = (id: number) => {
+    console.log('toogle', id)
+    dispatch(action.toggleAction(id))
+  }
+
   return (
-    <div>
+    <Flex direction="column" gap={32} padding={32}>
       <Formik
         initialValues={F.initialValues}
         validationSchema={F.validationSchema}
@@ -35,20 +39,27 @@ const TodoList = () => {
         )}
       </Formik>
 
-      <div>
-        {uncompleteList.map(({ title }, k) => (
-          <h1 key={k}>{title}</h1>
+      <Flex direction="column" gap={12}>
+        {uncompleteList.map(({ title, id = 0 }, k) => (
+          <Item key={k} itemId={id} onClick={() => toggle(id)}>
+            {title}
+          </Item>
         ))}
-      </div>
+      </Flex>
 
-      <div>
-        {completeList.map(({ title }, k) => (
-          <h1 key={k}>
-            <s>{title}</s>
-          </h1>
+      <Flex direction="column" gap={12}>
+        {completeList.map(({ title, id = 0, completed }, k) => (
+          <Item
+            key={k}
+            itemId={id}
+            onClick={() => toggle(id)}
+            completed={completed}
+          >
+            {title}
+          </Item>
         ))}
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   )
 }
 

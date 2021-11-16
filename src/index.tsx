@@ -1,13 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { render } from 'react-dom'
+import App from './App'
 
-ReactDOM.render(
+const app = (
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  </React.StrictMode>
+)
+const here = document.querySelector('#super-apps-render-here')
+
+render(app, here)
 
 
