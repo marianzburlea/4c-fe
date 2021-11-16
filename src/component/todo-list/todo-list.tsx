@@ -23,18 +23,24 @@ const TodoList = () => {
   }
 
   return (
-    <Flex direction="column" gap={32} padding={32}>
+    <Flex direction="column" gap={32} padding={32} bgc="yellow">
       <Formik
         initialValues={F.initialValues}
         validationSchema={F.validationSchema}
         onSubmit={saveTodo}
         enableReinitialize
       >
-        {({ isValid }) => (
+        {({ isValid, errors, touched }) => (
           <Form>
             <Flex gap={16}>
-              <Field type="text" as={Input} name="title" />
-              <Button disabled={!isValid} type="submit">
+              <Field
+                type="text"
+                as={Input}
+                name="title"
+                error={errors.title}
+                touched={touched.title}
+              />
+              <Button disabled={!isValid} type="submit" bgc="red">
                 Add to-do
               </Button>
             </Flex>

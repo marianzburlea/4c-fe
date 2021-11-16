@@ -1,9 +1,15 @@
 import * as T from './button.type'
 import * as S from './button.style'
 
-const Button = ({ children, type, disabled }: T.Button) => {
+const Button = ({ children, type, disabled, bgc, gap, padding }: T.Button) => {
   return (
-    <S.Button type={type} disabled={disabled}>
+    <S.Button
+      type={type}
+      disabled={disabled}
+      bgc={bgc}
+      gap={gap}
+      padding={padding}
+    >
       {children}
     </S.Button>
   )

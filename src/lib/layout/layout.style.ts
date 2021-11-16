@@ -22,6 +22,7 @@ export const Reset = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #3D7EE8;
   }
 
   code {

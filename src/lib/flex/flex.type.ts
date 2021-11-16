@@ -5,4 +5,5 @@ export interface Flex {
   gap?: number
   direction?: 'column' | 'row'
   padding?: number | string
+  bgc?: 'red' | 'blue' | 'yellow' | 'transparent'
 }
