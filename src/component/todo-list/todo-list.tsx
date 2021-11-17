@@ -7,7 +7,6 @@ import { filterComplete } from '../../util'
 
 const TodoList = ({ dataTestid }: T.TodoListComponent) => {
   const { state, dispatch } = useSiteState() as any
-  console.log('######### state', state)
 
   const { list }: T.TodoList = state || { list: [] }
 

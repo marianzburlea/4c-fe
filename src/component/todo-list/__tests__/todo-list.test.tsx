@@ -67,9 +67,8 @@ describe('Render the to-do list component', () => {
     await waitFor(() => {
       fireEvent.click(submitButton)
     })
-    debug()
 
-    expect(dispatch).toHaveBeenCalled()
+    expect(dispatch).not.toHaveBeenCalled()
 
     expect(screen.getByTestId(dataTestid)).toBeInTheDocument()
   })
