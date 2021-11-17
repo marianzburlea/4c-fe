@@ -6,5 +6,6 @@ export interface Flex {
   grow?: number
   direction?: 'column' | 'row'
   padding?: number | string
+  dataTestid?: string
   bgc?: 'red' | 'blue' | 'yellow' | 'transparent'
 }

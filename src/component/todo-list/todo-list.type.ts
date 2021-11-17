@@ -9,5 +9,6 @@ export interface FormExtra {
 }
 
 export interface TodoList {
-  list?: ToDo[]
+  list: ToDo[]
+  dataTestid?: string
 }

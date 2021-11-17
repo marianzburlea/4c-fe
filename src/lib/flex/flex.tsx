@@ -1,13 +1,22 @@
 import * as T from './flex.type'
 import * as S from './flex.style'
 
-const Flex = ({ children, direction, gap, padding, bgc, grow }: T.Flex) => {
+const Flex = ({
+  children,
+  direction,
+  gap,
+  padding,
+  bgc,
+  grow,
+  dataTestid,
+}: T.Flex) => {
   return (
     <S.Flex
       direction={direction}
       gap={gap}
       grow={grow}
       padding={padding}
+      data-testid={dataTestid}
       bgc={bgc}
     >
       {children}

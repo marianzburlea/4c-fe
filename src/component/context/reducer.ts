@@ -1,8 +1,28 @@
 import * as T from './type'
 import * as C from './constant'
 
-export const todoReducer = (state: T.AppData, action: any) => {
-  console.log(action)
+
+export const appData: T.AppData = {
+  list: [
+    {
+      timestamp: 1637092237826,
+      title: 'Second default uncomplete to-do item',
+      completed: false,
+    },
+    {
+      timestamp: 1637092227826, // time is 10 seconds lesser than the previous item
+      title: 'Frist default uncomplete to-do item',
+      completed: false,
+    },
+    {
+      timestamp: 1637092247826,
+      title: 'First default to-do item',
+      completed: true,
+    },
+  ],
+}
+
+export const todoReducer = (state: T.AppData = appData, action: any) => {
   switch (action.type) {
     case C.ADD:
       return {
@@ -13,7 +33,9 @@ export const todoReducer = (state: T.AppData, action: any) => {
     case C.REMOVE:
       return {
         ...state,
-        list: state.list.filter(({ timestamp }) => action.todo.timestamp !== timestamp),
+        list: state.list.filter(
+          ({ timestamp }) => action.todo.timestamp !== timestamp
+        ),
       }
 
     case C.UPDATE:

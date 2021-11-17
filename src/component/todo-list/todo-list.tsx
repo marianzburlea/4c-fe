@@ -4,15 +4,16 @@ import * as T from './todo-list.type'
 import * as F from './todo-list.form'
 import { action, useSiteState } from '../context'
 
-const TodoList = () => {
+const TodoList = ({ dataTestid }: T.TodoList) => {
   const { state, dispatch } = useSiteState() as any
+  // console.log('######### state', state)
 
-  const { list = [] } = state as T.TodoList
+  const { list }: T.TodoList = state || {}
 
-  const uncompleteList = list
+  const uncompleteList = (list || [])
     .filter(({ completed }) => !completed)
     .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
-  const completeList = list
+  const completeList = (list || [])
     .filter(({ completed }) => completed)
     .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
 
@@ -26,7 +27,13 @@ const TodoList = () => {
   }
 
   return (
-    <Flex direction="column" gap={64} padding={32} bgc="yellow">
+    <Flex
+      direction="column"
+      gap={64}
+      padding={32}
+      bgc="yellow"
+      dataTestid={dataTestid}
+    >
       <Flex gap={32}>
         <Logo height={48} width={48} src="/logo512.png" alt="ToDo List Logo" />
 
@@ -55,7 +62,12 @@ const TodoList = () => {
                 placeholder="Write a to-do"
               />
 
-              <Button disabled={!isValid} type="submit" bgc="red">
+              <Button
+                disabled={!isValid}
+                type="submit"
+                bgc="red"
+                dataTestid={`${dataTestid}-submit`}
+              >
                 Add to-do
               </Button>
             </Flex>

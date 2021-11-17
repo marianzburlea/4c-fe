@@ -17,6 +17,6 @@ export const toggleAction = (timestamp: number) => ({
 })
 
 export const updateAction = (timestamp: number, title: string) => ({
-  type: C.TOGGLE,
+  type: C.UPDATE,
   todo: { timestamp, title },
 })

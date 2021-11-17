@@ -7,8 +7,14 @@ const app = (
     <App />
   </React.StrictMode>
 )
-const here = document.querySelector('#super-apps-render-here')
 
-render(app, here)
+export const start = () => {
+  const here = document.querySelector('#super-apps-render-here')
 
+  if (here) {
+    render(app, here)
+  }
+}
+
+start()
 

@@ -10,7 +10,7 @@ const App = () => (
   <ToDoProvider>
     <ThemeProvider theme={theme}>
       <Layout>
-        <TodoList />
+        <TodoList list={[]} />
       </Layout>
     </ThemeProvider>
   </ToDoProvider>
