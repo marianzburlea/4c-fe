@@ -11,11 +11,6 @@ import * as T from './type'
 
 const AppProvider = createContext(appData)
 
-interface Ctx {
-  state: T.AppData
-  dispatch: Dispatch<any>
-}
-
 const ToDoProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(todoReducer, appData)
   return (
