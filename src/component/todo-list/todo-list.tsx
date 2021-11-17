@@ -3,19 +3,16 @@ import { Button, Flex, Input, Item, Title, Logo } from '../../lib'
 import * as T from './todo-list.type'
 import * as F from './todo-list.form'
 import { action, useSiteState } from '../context'
+import { filterComplete } from '../../util'
 
-const TodoList = ({ dataTestid }: T.TodoList) => {
+const TodoList = ({ dataTestid }: T.TodoListComponent) => {
   const { state, dispatch } = useSiteState() as any
-  // console.log('######### state', state)
+  console.log('######### state', state)
 
-  const { list }: T.TodoList = state || {}
+  const { list }: T.TodoList = state || { list: [] }
 
-  const uncompleteList = (list || [])
-    .filter(({ completed }) => !completed)
-    .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
-  const completeList = (list || [])
-    .filter(({ completed }) => completed)
-    .sort((a, b) => (a?.timestamp || 0) - (b?.timestamp || 0))
+  const uncompleteList = filterComplete(list, false)
+  const completeList = filterComplete(list, true)
 
   const saveTodo = ({ title }: T.ToDo, { resetForm }: T.FormExtra) => {
     dispatch(action.addAction(title))
