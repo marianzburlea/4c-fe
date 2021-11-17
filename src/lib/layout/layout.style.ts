@@ -35,5 +35,6 @@ export const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
+  margin: 2rem auto;
 `
