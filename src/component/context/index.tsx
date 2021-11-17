@@ -1,13 +1,12 @@
 import {
   createContext,
-  Dispatch,
   ReactNode,
   useContext,
   useReducer,
 } from 'react'
 
 import { appData, todoReducer } from './reducer'
-import * as T from './type'
+// import * as T from './type'
 
 const AppProvider = createContext(appData)
 
